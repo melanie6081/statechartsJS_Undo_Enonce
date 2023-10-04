@@ -12,6 +12,8 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "konva": "^9.2.1"
+    "konva": "^9.2.1",
+    "xstate": "^4.38.2",
+    "@xstate/inspect": "^0.8.0"
   }
 }

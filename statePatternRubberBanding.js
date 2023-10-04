@@ -1,5 +1,15 @@
 import Konva from 'konva';
 
+const stage = new Konva.Stage({
+  container: 'container',
+  width: 400,
+  height: 400
+});
+
+const layer = new Konva.Layer();
+stage.add(layer);
+
+let rubber;
 class State {
   handleMouseClick(event) { }
   handleMouseMove(event) { }
@@ -37,17 +47,6 @@ const States = {
 
 // L'état courant
 let currentState = States.IDLE;
-
-const stage = new Konva.Stage({
-  container: 'container',
-  width: 400,
-  height: 400
-});
-
-const layer = new Konva.Layer();
-stage.add(layer);
-
-let rubber;
 
 stage.on('click', (e) => {
   currentState.handleMouseClick(e);
