@@ -79,11 +79,11 @@ const lightService = interpret(lightMachine, { devTools: true })
   .onTransition((state) => {
     console.log("Current state:", state.value);
     // On change l'image en fonction de l'état
-    let image = "traffic-off.png";
+    let image = "/traffic-off.png";
     if (["maintenance.orange", "normalOperation.orange"].some(state.matches))
-      image = "traffic-orange.png";
-    if (state.matches("normalOperation.green")) image = "traffic-green.png";
-    if (state.matches("normalOperation.red"))   image = "traffic-red.png";
+      image = "/traffic-orange.png";
+    if (state.matches("normalOperation.green")) image = "/traffic-green.png";
+    if (state.matches("normalOperation.red"))   image = "/traffic-red.png";
     lightsImage.src = image;
     // On active ou désactive les boutons en fonction de l'état
     turnOnButton.disabled = !state.can("TURNON");

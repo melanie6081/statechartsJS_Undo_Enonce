@@ -55,10 +55,10 @@ const lampService = interpret(lampMachine, { devTools: true })
     console.log("Current state:", state.value);
     switch (state.value) {
       case "lampOff":
-        lamp.src = "light_off.gif";
+        lamp.src = "/light_off.gif";
         break;
       case "lampOn":
-        lamp.src = "light_on.gif";
+        lamp.src = "/light_on.gif";
         break;
     }
     counterText.innerHTML = count;
