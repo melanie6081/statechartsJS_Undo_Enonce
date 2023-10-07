@@ -11,7 +11,7 @@ export default defineConfig({
           xstatetraffic: resolve(__dirname, 'pages/xstatetraffic/index.html'),
           xstaterubber: resolve(__dirname, 'pages/xstaterubber/index.html'),
           xstatewatch: resolve(__dirname, 'pages/xstatewatch/index.html'),
-          simplerubber: resolve(__dirname, 'pages/simple/index.html'),
+          simplerubber: resolve(__dirname, 'pages/simple/index.html')
         },
       },
       sourcemap: "inline"
