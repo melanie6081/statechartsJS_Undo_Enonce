@@ -9,7 +9,9 @@ export default defineConfig({
           statepatternrubber: resolve(__dirname, 'pages/statepatternrubber/index.html'),
           xstatelamp: resolve(__dirname, 'pages/xstatelamp/index.html'),
           xstatetraffic: resolve(__dirname, 'pages/xstatetraffic/index.html'),
-          xstaterubber: resolve(__dirname, 'pages/xstaterubber/index.html')
+          xstaterubber: resolve(__dirname, 'pages/xstaterubber/index.html'),
+          xstatewatch: resolve(__dirname, 'pages/xstatewatch/index.html'),
+          simplerubber: resolve(__dirname, 'pages/simple/index.html'),
         },
       },
       sourcemap: "inline"
