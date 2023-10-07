@@ -12,6 +12,7 @@ export default defineConfig({
           xstaterubber: resolve(__dirname, 'pages/xstaterubber/index.html')
         },
       },
-      sourcemap: true
+      sourcemap: "inline"
     },
+    sourcemap: "inline"
   })
