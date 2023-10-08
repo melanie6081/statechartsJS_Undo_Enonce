@@ -1,9 +1,6 @@
 import Konva from "konva";
 import { createMachine, interpret } from "xstate";
-import { inspect } from "@xstate/inspect";
-inspect({
-    iframe: () => document.querySelector("iframe[data-xstate]"),
-});
+
 
 const stage = new Konva.Stage({
     container: "container",
@@ -149,7 +146,7 @@ const polylineMachine = createMachine(
     }
 );
 
-const polylineService = interpret(polylineMachine, { devTools: true })
+const polylineService = interpret(polylineMachine)
     .onTransition((state) => {
         console.log("Current state:", state.value);
     })
