@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/style.css">
+    <title>Polyline</title>
+  </head>
+  <body>
+    <h1>Exercice "Polyline"</h1>
+    <table width="100%">
+      <caption>Mode d'emploi</caption>
+      <tr>
+        <td>
+          <div id="container"></div>
+        </td>
+        <td>
+            <p>Tracer une "polyline" (suite de points interconnectés)</p>
+            <ul>
+                <li><code>MOUSECLICK</code> ajoute un point (jusqu'au maximum MAX fixé)</li>
+                <li><code>MOUSEMOVE</code> déplace le point provisoire</li>
+                <li><code>Backspace</code> efface le dernier point ajouté (sauf le premier)</li>
+                <li><code>Enter</code> enregistre la polyline (2 ≤ nombre de points ≤ MAX)</li>
+                <li><code>Ecape</code> abandonne le tracé de la polyline</li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <iframe width="100%" height="500px" data-xstate></iframe>
+        </td>
+      </tr>
+    </table>
+    <div>
+      Ce code utilise la bibliothèque <a href="https://konvajs.org/" target="_blank">Konva</a> pour dessiner dans un canvas javascript. Il démontre l'utilisation de la bibliothèque <a href="https://xstate.js.org/" target="_blank">xState</a> pour implémenter un statechart.
+    </div>
+    <script type="module" src="xStatePolyline.js" defer></script>
+    <hr />
+    <a href="/">Retour à la page principale</a>
+  </body>
+</html>
