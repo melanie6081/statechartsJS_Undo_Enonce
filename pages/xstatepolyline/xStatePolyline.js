@@ -12,7 +12,7 @@ const layer = new Konva.Layer();
 stage.add(layer);
 
 const MAX_POINTS = 10;
-let rubber;
+let polyline // La polyline en cours de construction;
 
 const polylineMachine = createMachine(
     {
@@ -90,57 +90,57 @@ const polylineMachine = createMachine(
         actions: {
             createLine: (context, event) => {
                 const pos = stage.getPointerPosition();
-                rubber = new Konva.Line({
+                polyline = new Konva.Line({
                     points: [pos.x, pos.y, pos.x, pos.y],
                     stroke: "red",
                     strokeWidth: 2,
                 });
-                layer.add(rubber);
+                layer.add(polyline);
             },
             setLastPoint: (context, event) => {
                 const pos = stage.getPointerPosition();
-                const currentPoints = rubber.points(); // Get the current points of the line
+                const currentPoints = polyline.points(); // Get the current points of the line
                 const size = currentPoints.length;
 
                 const newPoints = currentPoints.slice(0, size - 2); // Remove the last point
-                rubber.points(newPoints.concat([pos.x, pos.y]));
+                polyline.points(newPoints.concat([pos.x, pos.y]));
                 layer.batchDraw();
             },
             saveLine: (context, event) => {
-                const currentPoints = rubber.points(); // Get the current points of the line
+                const currentPoints = polyline.points(); // Get the current points of the line
                 const size = currentPoints.length;
                 // Le dernier point(provisoire) ne fait pas partie de la polyline
                 const newPoints = currentPoints.slice(0, size - 2);
-                rubber.points(newPoints);
+                polyline.points(newPoints);
                 layer.batchDraw();
             },
             addPoint: (context, event) => {
                 const pos = stage.getPointerPosition();
-                const currentPoints = rubber.points(); // Get the current points of the line
+                const currentPoints = polyline.points(); // Get the current points of the line
                 const newPoints = [...currentPoints, pos.x, pos.y]; // Add the new point to the array
-                rubber.points(newPoints); // Set the updated points to the line
+                polyline.points(newPoints); // Set the updated points to the line
                 layer.batchDraw(); // Redraw the layer to reflect the changes
             },
             abandon: (context, event) => {
-                layer.remove(rubber);
+                polyline.remove();
             },
             removeLastPoint: (context, event) => {
-                const currentPoints = rubber.points(); // Get the current points of the line
+                const currentPoints = polyline.points(); // Get the current points of the line
                 const size = currentPoints.length;
                 const provisoire = currentPoints.slice(size - 2, size); // Le point provisoire
                 const oldPoints = currentPoints.slice(0, size - 4); // On enlève le dernier point enregistré
-                rubber.points(oldPoints.concat(provisoire)); // Set the updated points to the line
+                polyline.points(oldPoints.concat(provisoire)); // Set the updated points to the line
                 layer.batchDraw(); // Redraw the layer to reflect the changes
             },
         },
         guards: {
             pasPlein: (context, event) => {
                 // On peut encore ajouter un point
-                return rubber.points().length < MAX_POINTS * 2;
+                return polyline.points().length < MAX_POINTS * 2;
             },
             plusDeDeuxPoints: (context, event) => {
                 // Deux coordonnées pour chaque point, plus le point provisoire
-                return rubber.points().length > 6;
+                return polyline.points().length > 6;
             },
         },
     }
