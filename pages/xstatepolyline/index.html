@@ -7,14 +7,15 @@
   </head>
   <body>
     <h1>Exercice "Polyline"</h1>
-    <table width="100%">
-      <caption>Mode d'emploi</caption>
+    <table style="width: 100%;">
+      <caption>Enoncé</caption>
       <tr>
         <td>
           <div id="container"></div>
         </td>
         <td>
-            <p>Tracer une "polyline" (suite de points interconnectés)</p>
+            <div>Implémenter avec la bibliothèque xState un statechart 
+                qui trace une "polyline" (suite de points interconnectés)</div>
             <ul>
                 <li><code>MOUSECLICK</code> ajoute un point (jusqu'au maximum MAX fixé)</li>
                 <li><code>MOUSEMOVE</code> déplace le point provisoire</li>
@@ -26,7 +27,12 @@
       </tr>
     </table>
     <div>
-      Ce code utilise la bibliothèque <a href="https://konvajs.org/" target="_blank">Konva</a> pour dessiner dans un canvas javascript. Il démontre l'utilisation de la bibliothèque <a href="https://xstate.js.org/" target="_blank">xState</a> pour implémenter un statechart.
+      Vous pouvez utiliser 
+      <a href="https://stately.ai/registry/new?source=landing-page" target="_blank">l'éditeur xState en ligne</a> 
+      et copier / coller le code généré dans votre projet ou installer 
+      <a href="https://marketplace.visualstudio.com/items?itemName=statelyai.stately-vscode">l'extension xState pour VSCode pour éditer
+        le statechart directement dans VSCode
+      </a>.
     </div>
     <script type="module" src="xStatePolyline.js" defer></script>
     <hr />
