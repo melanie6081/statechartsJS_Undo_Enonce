@@ -8,7 +8,9 @@ const stage = new Konva.Stage({
     height: 400,
 });
 
+// Une couche pour le dessin
 const dessin = new Konva.Layer();
+// Une couche pour la polyline en cours de construction
 const temporaire = new Konva.Layer();
 stage.add(dessin);
 stage.add(temporaire);
@@ -116,6 +118,7 @@ const polylineMachine = createMachine(
                 const newPoints = currentPoints.slice(0, size - 2);
                 polyline.points(newPoints);
                 polyline.stroke("black"); // On change la couleur
+                // On sauvegarde la polyline dans la couche de dessin
                 dessin.add(polyline); // On l'ajoute à la couche de dessin
             },
             addPoint: (context, event) => {
