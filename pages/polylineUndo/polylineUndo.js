@@ -12,16 +12,16 @@ class UndoManager{
 
     execute(command){
         command.execute()
-        this.undoStack.push(command)
+        // this.undoStack.push(command)
     }
 
     canUndo(){
-    return this.undoStack.isEmpty()
+    return !this.undoStack.isEmpty()
     }
 
     
     canRedo(){
-        return this.redoStack.isEmpty()
+        return !this.redoStack.isEmpty()
     }
     
     undo(){
@@ -55,6 +55,7 @@ class Command {
 
 class ConcreteCommand extends Command{
     constructor(line, dessin){
+        super()
         this.line = line;
         this.dessin = dessin;
     }
