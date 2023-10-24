@@ -2,17 +2,22 @@ import Stack from './stack';
 import Konva from "konva";
 import { createMachine, interpret } from "xstate";
 
+
 class UndoManager{
-    constructor(){
-       this.undoStack = new Stack();
-    this.redoStack = new Stack(); 
+    constructor(undoButton, redoButton){
+        this.undoButton = undoButton;
+        this.redoButton = redoButton;
+        this.undoStack = new Stack();
+        this.redoStack = new Stack(); 
     }
     
     
 
     execute(command){
         command.execute()
-        // this.undoStack.push(command)
+        this.undoStack.push(command)
+        this.undoButton.disabled = !this.canUndo()
+        this.redoButton.disabled = !this.canRedo()
     }
 
     canUndo(){
@@ -26,18 +31,22 @@ class UndoManager{
     
     undo(){
         if(this.canUndo()){
-            let command = undoStack.pop()
+            let command = this.undoStack.pop()
             command.undo()
-            this.redoStack.push(command)
+            this.redoStack.push(command)  
         }
+        this.undoButton.disabled = !this.canUndo()
+        this.redoButton.disabled = !this.canRedo()
     }
     
     redo(){
         if(this.canRedo()){
-            let command = redoStack.pop()
+            let command = this.redoStack.pop()
             command.execute()
-            undoStack.push(command)
+            this.undoStack.push(command)
         }
+        this.undoButton.disabled = !this.canUndo()
+        this.redoButton.disabled = !this.canRedo()
     }
 
 }
@@ -70,13 +79,14 @@ class ConcreteCommand extends Command{
 
 }
 
-const undomanager = new UndoManager()
 
 const undoButton = document.getElementById("undo");
 const redoButton = document.getElementById("redo");
 
+const undomanager = new UndoManager(undoButton, redoButton)
+
 undoButton.addEventListener("click", () => {
-  undomanager.undo();
+    undomanager.undo();
 });
 
 redoButton.addEventListener("click", () => {
